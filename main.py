@@ -10,12 +10,12 @@ async def admin() -> dict:
 
 
 @app.get('/user/{user_id}')
-async def polzovatel(user_id: Annotated[int, Path(maximum=100, minimum=1, description='Enter User ID', example='1')]) -> dict:
+async def polzovatel(user_id: Annotated[int, Path(le=100, ge=1, description='Enter User ID', example='1')]) -> dict:
     return {"message": f"Вы вошли как пользователь {user_id}"}
 
 
 @app.get('/user/{username}/{age}')
-async def ctranizi(username: Annotated[str, Path(min_length=5, max_length=20, description='Enter username', example='UrbanUser')], age: Annotated[int, Path(maximum=120, minimum=18, description='Enter age', example='24')]) -> dict:
+async def ctranizi(username: Annotated[str, Path(min_length=5, max_length=20, description='Enter username', example='UrbanUser')], age: Annotated[int, Path(le=120, ge=18, description='Enter age', example='24')]) -> dict:
     return {"message": f"Информация о пользователе. Имя: {username}, Возраст: {age}"}
 
 
